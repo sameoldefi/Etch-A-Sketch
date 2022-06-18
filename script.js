@@ -1,6 +1,8 @@
 let color = 'black';
 let click = true;
 
+
+// this function removes old divs and creates new divs
 function populateBoard(size) {
   let board = document.querySelector('.board');
   let squares = board.querySelectorAll('div');
@@ -20,6 +22,7 @@ function populateBoard(size) {
 
 populateBoard(16);
 
+// this function gives a limit to the user if how much squares the user should put
 function changeSize(input) {
   if (input >= 2 && input <= 100) {
     populateBoard(input);
@@ -27,7 +30,7 @@ function changeSize(input) {
     console.log("Too many squares");
   }
 }
-
+// this function h
 function colorSquare() {
   if (click) {
     if ((color === `random`)) {
@@ -37,23 +40,26 @@ function colorSquare() {
     }
   }
 }
-
+// this function is where the user selectes a button in the html
 function changeColor(choise) {
   color = choise;
 }
+
+// this function resets the board but making all the div white again
 function resetBoard() {
   let board = document.querySelector('.board');
   let squares = board.querySelectorAll('div');
   squares.forEach((div) => div.style.backgroundColor = 'white');
 }
 
-
-document.querySelector('body').addEventListener('click', () => {
-  click = !click;
-  if (click) {
-    document.querySelector('.mode').textContent = "Mode: Coloring"
-  } else {
-    document.querySelector('.mode').textContent = "Mode: Not Coloring"
-
+// this function lets user know if he is on coloring mode or not
+document.querySelector('body').addEventListener('click', (e) => {
+  if (e.target.tagName != 'BUTTON') {
+    click = !click;
+    if (click) {
+      document.querySelector('.mode').textContent = "Mode: Coloring"
+    } else {
+      document.querySelector('.mode').textContent = "Mode: Not Coloring"
+    }
   }
 });
